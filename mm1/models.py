@@ -1,12 +1,12 @@
 
 from django.db import models
-import random as rnd
-from django.db import models
-import math
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.contrib.auth.models import AbstractUser
-from django.db.models.signals import post_save, post_delete
-from datetime import timedelta, date
+# import random as rnd
+
+# import math
+# from django.core.validators import MinValueValidator, MaxValueValidator
+# from django.contrib.auth.models import AbstractUser
+# from django.db.models.signals import post_save, post_delete
+# from datetime import timedelta, date
 
 
 time_slots = (
@@ -26,12 +26,6 @@ DAYS_OF_WEEK = (
     ('Friday', 'Friday'),
     ('Saturday', 'Saturday'),
 )
-
-# POPULATION_SIZE = 9
-# NUMB_OF_ELITE_SCHEDULES = 1
-# TOURNAMENT_SELECTION_SIZE = 3
-# MUTATION_RATE = 0.1
-
 
 class Room(models.Model):
     r_number = models.CharField(max_length=6)

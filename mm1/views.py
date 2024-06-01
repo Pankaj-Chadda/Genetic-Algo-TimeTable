@@ -52,37 +52,6 @@ class Schedule:
             self._isFitnessChanged = False
         return self._fitness
 
-    #This method create classes for all the sections by allocating rooms, instructors and meeting times randomly.
-    # def initialize(self):
-    #     sections = Section.objects.all()
-    #     for section in sections:
-    #         dept = section.department
-    #         n = section.num_class_in_week
-    #         if n <= len(MeetingTime.objects.all()):
-    #             courses = dept.courses.all()
-    #             for course in courses:
-    #                 for i in range(n // len(courses)):
-    #                     crs_inst = course.instructors.all()
-    #                     newClass = Class(self._classNumb, dept, section.section_id, course)
-    #                     self._classNumb += 1
-    #                     newClass.set_meetingTime(data.get_meetingTimes()[rnd.randrange(0, len(MeetingTime.objects.all()))])
-    #                     newClass.set_room(data.get_rooms()[rnd.randrange(0, len(data.get_rooms()))])
-    #                     newClass.set_instructor(crs_inst[rnd.randrange(0, len(crs_inst))])
-    #                     self._classes.append(newClass)
-    #         else:
-    #             n = len(MeetingTime.objects.all())
-    #             courses = dept.courses.all()
-    #             for course in courses:
-    #                 for i in range(n // len(courses)):
-    #                     crs_inst = course.instructors.all()
-    #                     newClass = Class(self._classNumb, dept, section.section_id, course)
-    #                     self._classNumb += 1
-    #                     newClass.set_meetingTime(data.get_meetingTimes()[rnd.randrange(0, len(MeetingTime.objects.all()))])
-    #                     newClass.set_room(data.get_rooms()[rnd.randrange(0, len(data.get_rooms()))])
-    #                     newClass.set_instructor(crs_inst[rnd.randrange(0, len(crs_inst))])
-    #                     self._classes.append(newClass)
-
-    #     return self
 
     # Initialization
     def initialize(self):
@@ -117,6 +86,7 @@ class Schedule:
             for j in range(len(classes)):
                 if j >= i:
                     #for a same section, having different section_id (different classes schedules) at same time , it is conflict.
+                    #It implies that the same group of students is supposed to be in two different places at the same time, which is impossible.
                     if (classes[i].meeting_time == classes[j].meeting_time) and (classes[i].section_id != classes[j].section_id) and (classes[i].section == classes[j].section):
                         if classes[i].room == classes[j].room:
                             self._numberOfConflicts += 1
